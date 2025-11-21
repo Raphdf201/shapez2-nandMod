@@ -1,0 +1,26 @@
+{
+  "Version": "0.0.1",
+  "Title": "Signal API",
+  "Description": "Helper API for signal/wire buildings",
+  "Author": "Raphdf201",
+  "SavedModVersionCompabilityRangeWithSelf": "0.*.*",
+  "GameVersionSupportRange": "*",
+  "AffectsSaveGames": true,
+  "DisablesAchievements": false,
+  "Conflicts": [],
+  "Assemblies": [
+    "SignalApi.dll"
+  ],
+  "Dependencies": [
+    {
+      "ModId": "steam:3542712030",
+      "ModTitle": "MonoMod.RuntimeDetour",
+      "Version": "^25.2.3"
+    },
+    {
+      "ModId": "local:ShapezShifter",
+      "ModTitle": "Shapez Shifter",
+      "Version": "0.9.*"
+    }
+  ]
+}
