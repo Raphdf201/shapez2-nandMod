@@ -36,7 +36,7 @@ public class Main : IMod
             .WithPreferredPlacement(DefaultPreferredPlacementMode.Single)
             .AutoConnected();
 
-        IBuildingConnectorData connectorData = BuildingConnectors.SignalSingleTile()
+        IBuildingConnectorData connectorData = BuildingConnectors.SingleTile()
             .AddWireInput(WireConnectorConfig.CustomInput(TileDirection.West))
             .AddWireInput(WireConnectorConfig.CustomInput(TileDirection.North))
             .AddWireOutput(WireConnectorConfig.CustomOutput(TileDirection.East))
