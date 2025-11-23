@@ -10,7 +10,6 @@ using ShapezShifter.Flow.Toolbar;
 using ShapezShifter.Kit;
 using ShapezShifter.SharpDetour;
 using ShapezShifter.Textures;
-using UnityEngine;
 
 namespace SignalApi;
 
@@ -44,7 +43,7 @@ public class Main : IMod
         IBuildingBuilder blding = Building.Create(_defId)
             .WithConnectorData(connectorData)
             .DynamicallyRendering<NAndGateSimulationRenderer, NAndGateSimulation, INAndGateDrawData>(new NAndGateDrawData())
-            .WithStaticDrawData(CreateDrawData())
+            .WithStaticDrawData(NAndGateDrawData.CreateCubeDrawData())
             .WithoutPrediction()
             .WithoutSound()
             .WithoutSimulationConfiguration()
@@ -77,25 +76,5 @@ public class Main : IMod
     {
         return systems.Append(new AtomicStatefulBuildingSimulationSystem<NAndGateSimulation, LogicGate2In1OutSimulationState>(
             new NAndGateSimulationFactory(), _defId));
-    }
-    
-    private static BuildingDrawData CreateDrawData()
-    {
-        Mesh baseMesh = GameObject.CreatePrimitive(PrimitiveType.Cube).GetComponent<MeshFilter>().sharedMesh;;
-
-        LOD6Mesh baseModLod = MeshLod.Create().AddLod0Mesh(baseMesh).BuildLod6Mesh();
-
-        return new BuildingDrawData(
-            renderVoidBelow: false,
-            [baseModLod, baseModLod, baseModLod],
-            baseModLod,
-            baseModLod,
-            baseModLod.LODClose,
-            new LODEmptyMesh(),
-            BoundingBoxHelper.CreateBasicCollider(baseMesh),
-            new NAndGateDrawData(),
-            false,
-            null,
-            false);
     }
 }
