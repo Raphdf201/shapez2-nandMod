@@ -29,9 +29,7 @@ public class NAndGateDrawData : INAndGateDrawData
     public static BuildingDrawData CreateMeshDrawData(ModFolderLocator modResourcesLocator)
     {
         string baseMeshPath = modResourcesLocator.SubPath("nand.fbx");
-        Console.WriteLine("MESH PATH: " + baseMeshPath);
         Mesh baseMesh = FileMeshLoader.LoadSingleMeshFromFile(baseMeshPath);
-
         LOD6Mesh baseModLod = MeshLod.Create().AddLod0Mesh(baseMesh).BuildLod6Mesh();
 
         return new BuildingDrawData(
