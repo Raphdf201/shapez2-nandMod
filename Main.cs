@@ -2,8 +2,6 @@
 using System.Linq;
 using Core.Localization;
 using Game.Orchestration;
-using Core.Logging;
-using Game.Core.Coordinates;
 using MonoMod.RuntimeDetour;
 using ShapezShifter.Flow;
 using ShapezShifter.Flow.Atomic;
@@ -12,6 +10,7 @@ using ShapezShifter.Flow.Toolbar;
 using ShapezShifter.Kit;
 using ShapezShifter.SharpDetour;
 using ShapezShifter.Textures;
+using UnityEngine;
 
 namespace SignalApi;
 
@@ -44,7 +43,8 @@ public class Main : IMod
 
         IBuildingBuilder blding = Building.Create(_defId)
             .WithConnectorData(connectorData)
-            .WithCopiedStaticDrawData(new("LogicGateAndInternalVariant"))
+            .DynamicallyRendering<NAndGateSimulationRenderer, NAndGateSimulation, INAndGateDrawData>(new NAndGateDrawData())
+            .WithStaticDrawData(CreateDrawData(res))
             .WithoutPrediction()
             .WithoutSound()
             .WithoutSimulationConfiguration()
@@ -77,5 +77,26 @@ public class Main : IMod
     {
         return systems.Append(new AtomicStatefulBuildingSimulationSystem<NAndGateSimulation, LogicGate2In1OutSimulationState>(
             new NAndGateSimulationFactory(), _defId));
+    }
+    
+    private static BuildingDrawData CreateDrawData(ModFolderLocator modResourcesLocator)
+    {
+        string baseMeshPath = modResourcesLocator.SubPath("DiagonalCutter.fbx");
+        Mesh baseMesh = FileMeshLoader.LoadSingleMeshFromFile(baseMeshPath);
+
+        LOD6Mesh baseModLod = MeshLod.Create().AddLod0Mesh(baseMesh).BuildLod6Mesh();
+
+        return new BuildingDrawData(
+            renderVoidBelow: false,
+            [baseModLod, baseModLod, baseModLod],
+            baseModLod,
+            baseModLod,
+            baseModLod.LODClose,
+            new LODEmptyMesh(),
+            BoundingBoxHelper.CreateBasicCollider(baseMesh),
+            new NAndGateDrawData(),
+            false,
+            null,
+            false);
     }
 }
