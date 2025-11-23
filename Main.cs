@@ -44,7 +44,7 @@ public class Main : IMod
         IBuildingBuilder blding = Building.Create(_defId)
             .WithConnectorData(connectorData)
             .DynamicallyRendering<NAndGateSimulationRenderer, NAndGateSimulation, INAndGateDrawData>(new NAndGateDrawData())
-            .WithStaticDrawData(CreateDrawData(res))
+            .WithStaticDrawData(CreateDrawData())
             .WithoutPrediction()
             .WithoutSound()
             .WithoutSimulationConfiguration()
@@ -79,10 +79,9 @@ public class Main : IMod
             new NAndGateSimulationFactory(), _defId));
     }
     
-    private static BuildingDrawData CreateDrawData(ModFolderLocator modResourcesLocator)
+    private static BuildingDrawData CreateDrawData()
     {
-        string baseMeshPath = modResourcesLocator.SubPath("DiagonalCutter.fbx");
-        Mesh baseMesh = FileMeshLoader.LoadSingleMeshFromFile(baseMeshPath);
+        Mesh baseMesh = GameObject.CreatePrimitive(PrimitiveType.Cube).GetComponent<MeshFilter>().sharedMesh;;
 
         LOD6Mesh baseModLod = MeshLod.Create().AddLod0Mesh(baseMesh).BuildLod6Mesh();
 
