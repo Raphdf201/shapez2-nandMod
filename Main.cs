@@ -43,7 +43,7 @@ public class Main : IMod
         IBuildingBuilder blding = Building.Create(_defId)
             .WithConnectorData(connectorData)
             .DynamicallyRendering<NAndGateSimulationRenderer, NAndGateSimulation, INAndGateDrawData>(new NAndGateDrawData())
-            .WithStaticDrawData(NAndGateDrawData.CreateCubeDrawData())
+            .WithStaticDrawData(NAndGateDrawData.CreateMeshDrawData(res))
             .WithoutPrediction()
             .WithoutSound()
             .WithoutSimulationConfiguration()
