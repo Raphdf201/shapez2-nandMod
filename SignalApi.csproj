@@ -11,6 +11,9 @@
         <OutputPath>$(SPZ2_PERSISTENT)\mods\SignalApi</OutputPath>
         <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     </PropertyGroup>
+    <PropertyGroup>
+        <PublicizerLogFilePath>logs/krafs</PublicizerLogFilePath>
+    </PropertyGroup>
 
     <Target Name="SteamPublish">
         <Exec Command='sh .\Steam\SteamPublish.sh "$(OutputPath)'/>
@@ -18,6 +21,14 @@
 
     <ItemGroup>
         <PackageReference Include="MonoMod.RuntimeDetour" Version="25.3.0"/>
+        <PackageReference Include="Krafs.Publicizer" Version="2.3.0">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+    </ItemGroup>
+    
+    <ItemGroup>
+        <Publicize Include="Game.Core.Rendering" />
     </ItemGroup>
 
     <ItemGroup>
@@ -72,6 +83,10 @@
         </Reference>
         <Reference Include="Game.Core.Coordinates">
             <HintPath>$(SPZ2_PATH)\Game.Core.Coordinates.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+        <Reference Include="Game.Core.Rendering">
+            <HintPath>$(SPZ2_PATH)\Game.Core.Rendering.dll</HintPath>
             <Private>False</Private>
         </Reference>
         <Reference Include="Game.Content">
