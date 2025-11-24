@@ -1,4 +1,3 @@
-using System;
 using ShapezShifter.Kit;
 using UnityEngine;
 
@@ -30,14 +29,14 @@ public class NAndGateDrawData : INAndGateDrawData
     {
         string baseMeshPath = modResourcesLocator.SubPath("nand.fbx");
         Mesh baseMesh = FileMeshLoader.LoadSingleMeshFromFile(baseMeshPath);
-        LOD6Mesh baseModLod = MeshLod.Create().AddLod0Mesh(baseMesh).BuildLod6Mesh();
+        LOD6Mesh lodMesh = MeshLod.Create().AddLod0Mesh(baseMesh).BuildLod6Mesh();
 
         return new BuildingDrawData(
             renderVoidBelow: false,
-            [baseModLod, baseModLod, baseModLod],
-            baseModLod,
-            baseModLod,
-            baseModLod.LODClose,
+            [lodMesh, lodMesh, lodMesh],
+            lodMesh,
+            lodMesh,
+            lodMesh.LODClose,
             new LODEmptyMesh(),
             BoundingBoxHelper.CreateBasicCollider(baseMesh),
             new NAndGateDrawData(),

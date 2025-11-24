@@ -1,7 +1,7 @@
 {
   "Version": "0.0.1",
-  "Title": "Signal API",
-  "Description": "Helper API for signal/wire buildings",
+  "Title": "SimpleNand",
+  "Description": "Adds a simple nand gate",
   "Author": "Raphdf201",
   "SavedModVersionCompabilityRangeWithSelf": "0.*.*",
   "GameVersionSupportRange": "*",
@@ -9,7 +9,7 @@
   "DisablesAchievements": false,
   "Conflicts": [],
   "Assemblies": [
-    "SignalApi.dll"
+    "NandMod.dll"
   ],
   "Dependencies": [
     {
