@@ -5,6 +5,7 @@
         <Nullable>disable</Nullable>
         <RunPostBuildEvent>Always</RunPostBuildEvent>
         <LangVersion>12</LangVersion>
+        <RootNamespace>SignalApi</RootNamespace>
     </PropertyGroup>
 
     <PropertyGroup>

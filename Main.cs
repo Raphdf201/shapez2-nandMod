@@ -11,7 +11,7 @@ using ShapezShifter.Kit;
 using ShapezShifter.SharpDetour;
 using ShapezShifter.Textures;
 
-namespace SignalApi;
+namespace NandMod;
 
 public class Main : IMod
 {

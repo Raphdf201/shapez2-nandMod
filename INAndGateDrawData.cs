@@ -1,4 +1,4 @@
-namespace SignalApi;
+namespace NandMod;
 
 public interface INAndGateDrawData : IBuildingCustomDrawData
 {

@@ -2,7 +2,7 @@ using System;
 using ShapezShifter.Kit;
 using UnityEngine;
 
-namespace SignalApi;
+namespace NandMod;
 
 public class NAndGateDrawData : INAndGateDrawData
 {

@@ -1,6 +1,6 @@
 ﻿using Core.Factory;
 
-namespace SignalApi;
+namespace NandMod;
 
 public class NAndGateSimulationFactory :
     IFactory<LogicGate2In1OutSimulationState, NAndGateSimulation>
