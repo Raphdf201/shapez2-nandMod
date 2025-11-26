@@ -18,17 +18,15 @@ public class Main : IMod
     private readonly Hook _modSystemHook;
     private readonly BuildingDefinitionId _defId = new("nand");
     private readonly BuildingDefinitionGroupId _groupId = new("nandgroup");
-
     private readonly IToolbarEntryInsertLocation _location =
         ToolbarElementLocator.Root().ChildAt(2).ChildAt(6).ChildAt(^1).InsertAfter();
-    //                               Wires tab      Logic gates
 
     public Main()
     {
         ModFolderLocator res = ModDirectoryLocator.CreateLocator<Main>().SubLocator("Resources");
         IBuildingGroupBuilder bldingGroup = BuildingGroup.Create(_groupId)
-            .WithTitle("nand".T())
-            .WithDescription("this is a nand gate".T())
+            .WithTitle("building-variant.nand-gate.title".T())
+            .WithDescription("building-variant.nand-gate.description".T())
             .WithIcon(FileTextureLoader.LoadTextureAsSprite(res.SubPath("icon.png"), out _))
             .AsNonTransportableBuilding()
             .WithPreferredPlacement(DefaultPreferredPlacementMode.Single)
