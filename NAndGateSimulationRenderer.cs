@@ -1,4 +1,4 @@
 namespace NandMod;
 
-public class NAndGateSimulationRenderer(IMapModel map)
+public abstract class NAndGateSimulationRenderer(IMapModel map)
     : StatelessBuildingSimulationRenderer<NAndGateSimulation, INAndGateDrawData>(map);

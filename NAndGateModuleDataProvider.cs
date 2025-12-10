@@ -6,7 +6,7 @@ namespace NandMod;
 public class NAndGateModuleDataProvider : 
     SimulationBasedBuildingModuleDataProvider<NAndGateSimulation>
 {
-    protected override IEnumerable<IHUDSidePanelModuleData> GetSimulationModules(
+    public override IEnumerable<IHUDSidePanelModuleData> GetSimulationModules(
         BuildingModel building,
         ILocalizedSimulation localizedSimulation,
         NAndGateSimulation actualSimulation)

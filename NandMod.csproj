@@ -29,7 +29,10 @@
     </ItemGroup>
     
     <ItemGroup>
+        <Publicize Include="Game.Core" />
         <Publicize Include="Game.Core.Rendering" />
+        <Publicize Include="Game.Orchestration" />
+        <Publicize Include="SPZGameAssembly" />
     </ItemGroup>
 
     <ItemGroup>
