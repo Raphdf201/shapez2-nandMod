@@ -16,6 +16,7 @@ namespace NandMod;
 public class Main : IMod
 {
     private readonly Hook _modSystemHook;
+    private readonly Hook _consoleCommandsHook;
     private readonly BuildingDefinitionId _defId = new("nand");
     private readonly BuildingDefinitionGroupId _groupId = new("nandgroup");
     private readonly IToolbarEntryInsertLocation _location =
@@ -61,11 +62,16 @@ public class Main : IMod
             .CreatePostfixHook<BuiltinSimulationSystems, IEnumerable<ISimulationSystem>>(
                 simulationSystems => simulationSystems.CreateSimulationSystems(),
                 CreateModSystems);
+
+        _consoleCommandsHook = DetourHelper
+            .CreatePostfixHook<GameSessionOrchestrator, IGameData>((orchestrator, gameData) =>
+                orchestrator.Init_9_ConsoleCommands(gameData), SetupCommands);
     }
 
     public void Dispose()
     {
         _modSystemHook.Dispose();
+        _consoleCommandsHook.Dispose();
     }
 
     private IEnumerable<ISimulationSystem> CreateModSystems(
@@ -74,5 +80,14 @@ public class Main : IMod
     {
         return systems.Append(new AtomicStatefulBuildingSimulationSystem<NAndGateSimulation, LogicGate2In1OutSimulationState>(
             new NAndGateSimulationFactory(), _defId));
+    }
+
+    private void SetupCommands(GameSessionOrchestrator orchestrator, IGameData gameData)
+    {
+        IDebugConsole console = orchestrator.DependencyContainer.Resolve<IDebugConsole>();
+        console.Register("nandmod.test", context =>
+        {
+            context.Output("yay it works");
+        });
     }
 }

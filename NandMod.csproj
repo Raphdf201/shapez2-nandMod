@@ -30,6 +30,7 @@
     
     <ItemGroup>
         <Publicize Include="Game.Core.Rendering" />
+        <Publicize Include="Game.Orchestration" />
     </ItemGroup>
 
     <ItemGroup>
