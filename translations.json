@@ -1,0 +1,10 @@
+{
+  "en-US": {
+    "building-variant.nand-gate.title": "NAND",
+    "building-variant.nand-gate.description": "This is a NAND gate. It is not an AND gate"
+  },
+  "fr-CA": {
+    "building-variant.nand-gate.title": "NAND",
+    "building-variant.nand-gate.description": "Ceci est une gate NAND. Ce n'est pas une gate AND"
+  }
+}

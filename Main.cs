@@ -11,24 +11,23 @@ using ShapezShifter.Kit;
 using ShapezShifter.SharpDetour;
 using ShapezShifter.Textures;
 
-namespace SignalApi;
+namespace NandMod;
 
 public class Main : IMod
 {
     private readonly Hook _modSystemHook;
+    private readonly Hook _consoleCommandsHook;
     private readonly BuildingDefinitionId _defId = new("nand");
     private readonly BuildingDefinitionGroupId _groupId = new("nandgroup");
-
     private readonly IToolbarEntryInsertLocation _location =
         ToolbarElementLocator.Root().ChildAt(2).ChildAt(6).ChildAt(^1).InsertAfter();
-    //                               Wires tab      Logic gates
 
     public Main()
     {
         ModFolderLocator res = ModDirectoryLocator.CreateLocator<Main>().SubLocator("Resources");
         IBuildingGroupBuilder bldingGroup = BuildingGroup.Create(_groupId)
-            .WithTitle("nand".T())
-            .WithDescription("this is a nand gate".T())
+            .WithTitle("building-variant.nand-gate.title".T())
+            .WithDescription("building-variant.nand-gate.description".T())
             .WithIcon(FileTextureLoader.LoadTextureAsSprite(res.SubPath("icon.png"), out _))
             .AsNonTransportableBuilding()
             .WithPreferredPlacement(DefaultPreferredPlacementMode.Single)
@@ -43,7 +42,7 @@ public class Main : IMod
         IBuildingBuilder blding = Building.Create(_defId)
             .WithConnectorData(connectorData)
             .DynamicallyRendering<NAndGateSimulationRenderer, NAndGateSimulation, INAndGateDrawData>(new NAndGateDrawData())
-            .WithStaticDrawData(NAndGateDrawData.CreateCubeDrawData())
+            .WithStaticDrawData(NAndGateDrawData.CreateMeshDrawData(res))
             .WithoutPrediction()
             .WithoutSound()
             .WithoutSimulationConfiguration()
@@ -63,11 +62,14 @@ public class Main : IMod
             .CreatePostfixHook<BuiltinSimulationSystems, IEnumerable<ISimulationSystem>>(
                 simulationSystems => simulationSystems.CreateSimulationSystems(),
                 CreateModSystems);
+
+        this.RegisterConsoleCommand("nandmod.version", context => context.Output("v0.0.1"));
     }
 
     public void Dispose()
     {
         _modSystemHook.Dispose();
+        _consoleCommandsHook.Dispose();
     }
 
     private IEnumerable<ISimulationSystem> CreateModSystems(

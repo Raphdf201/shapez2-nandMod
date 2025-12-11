@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Game.Core.Map.Simulation;
 
-namespace SignalApi;
+namespace NandMod;
 
 public class NAndGateModuleDataProvider : 
     SimulationBasedBuildingModuleDataProvider<NAndGateSimulation>

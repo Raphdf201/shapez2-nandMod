@@ -4,3 +4,5 @@ logs/
 /packages/
 riderModule.iml
 /_ReSharper.Caches/
+*.sln.DotSettings*
+.idea/

@@ -1,7 +1,7 @@
 using ShapezShifter.Kit;
 using UnityEngine;
 
-namespace SignalApi;
+namespace NandMod;
 
 public class NAndGateDrawData : INAndGateDrawData
 {
@@ -17,6 +17,26 @@ public class NAndGateDrawData : INAndGateDrawData
             baseModLod,
             baseModLod,
             baseModLod.LODClose,
+            new LODEmptyMesh(),
+            BoundingBoxHelper.CreateBasicCollider(baseMesh),
+            new NAndGateDrawData(),
+            false,
+            null,
+            false);
+    }
+    
+    public static BuildingDrawData CreateMeshDrawData(ModFolderLocator modResourcesLocator)
+    {
+        string baseMeshPath = modResourcesLocator.SubPath("nand.fbx");
+        Mesh baseMesh = FileMeshLoader.LoadSingleMeshFromFile(baseMeshPath);
+        LOD6Mesh lodMesh = MeshLod.Create().AddLod0Mesh(baseMesh).BuildLod6Mesh();
+
+        return new BuildingDrawData(
+            renderVoidBelow: false,
+            [lodMesh, lodMesh, lodMesh],
+            lodMesh,
+            lodMesh,
+            lodMesh.LODClose,
             new LODEmptyMesh(),
             BoundingBoxHelper.CreateBasicCollider(baseMesh),
             new NAndGateDrawData(),

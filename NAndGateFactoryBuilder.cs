@@ -3,7 +3,7 @@ using Core.Factory;
 using ShapezShifter.Flow.Atomic;
 using ShapezShifter.Hijack;
 
-namespace SignalApi;
+namespace NandMod;
 
 internal class NAndGateFactoryBuilder
     : IFactoryBuilder<NAndGateSimulation, LogicGate2In1OutSimulationState, EmptyCustomSimulationConfiguration>
