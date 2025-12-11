@@ -63,7 +63,7 @@ public class Main : IMod
                 simulationSystems => simulationSystems.CreateSimulationSystems(),
                 CreateModSystems);
 
-        this.RegisterConsoleCommand("nandmod.version", context => context.Output("v0.0.1"));
+        this.RegisterConsoleCommand("version", context => context.Output("v0.0.1"));
     }
 
     public void Dispose()
