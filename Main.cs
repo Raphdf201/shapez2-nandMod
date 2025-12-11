@@ -63,9 +63,7 @@ public class Main : IMod
                 simulationSystems => simulationSystems.CreateSimulationSystems(),
                 CreateModSystems);
 
-        _consoleCommandsHook = DetourHelper
-            .CreatePostfixHook<GameSessionOrchestrator, IGameData>((orchestrator, gameData) =>
-                orchestrator.Init_9_ConsoleCommands(gameData), SetupCommands);
+        this.RegisterConsoleCommand("nandmod.version", context => context.Output("v0.0.1"));
     }
 
     public void Dispose()
@@ -80,14 +78,5 @@ public class Main : IMod
     {
         return systems.Append(new AtomicStatefulBuildingSimulationSystem<NAndGateSimulation, LogicGate2In1OutSimulationState>(
             new NAndGateSimulationFactory(), _defId));
-    }
-
-    private void SetupCommands(GameSessionOrchestrator orchestrator, IGameData gameData)
-    {
-        IDebugConsole console = orchestrator.DependencyContainer.Resolve<IDebugConsole>();
-        console.Register("nandmod.test", context =>
-        {
-            context.Output("yay it works");
-        });
     }
 }
