@@ -16,7 +16,6 @@ namespace NandMod;
 public class Main : IMod
 {
     private readonly Hook _modSystemHook;
-    private readonly Hook _consoleCommandsHook;
     private readonly BuildingDefinitionId _defId = new("nand");
     private readonly BuildingDefinitionGroupId _groupId = new("nandgroup");
     private readonly IToolbarEntryInsertLocation _location =
@@ -69,7 +68,6 @@ public class Main : IMod
     public void Dispose()
     {
         _modSystemHook.Dispose();
-        _consoleCommandsHook.Dispose();
     }
 
     private IEnumerable<ISimulationSystem> CreateModSystems(
