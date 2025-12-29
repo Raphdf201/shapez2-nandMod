@@ -25,11 +25,17 @@ public class NAndGateDrawData : INAndGateDrawData
             false);
     }
     
-    public static BuildingDrawData CreateMeshDrawData(ModFolderLocator modResourcesLocator)
+    public static BuildingDrawData CreateDrawData()
     {
-        string baseMeshPath = modResourcesLocator.SubPath("nand.fbx");
+        string baseMeshPath = Main.Res.SubPath("nand.fbx");
         Mesh baseMesh = FileMeshLoader.LoadSingleMeshFromFile(baseMeshPath);
-        LOD6Mesh lodMesh = MeshLod.Create().AddLod0Mesh(baseMesh).BuildLod6Mesh();
+        LOD6Mesh lodMesh = MeshLod.Create().AddLod0Mesh(baseMesh)
+            .UseLod0AsLod1()
+            .UseLod1AsLod2()
+            .UseLod2AsLod3()
+            .UseLod3AsLod4()
+            .UseLod4AsLod5()
+            .BuildLod6Mesh();
 
         return new BuildingDrawData(
             renderVoidBelow: false,

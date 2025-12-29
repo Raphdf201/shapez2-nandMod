@@ -29,7 +29,7 @@ cat Steam\\base.tmp.vdf
 TMP_VDF=$CURRENT_DIR\\Steam\\base.tmp.vdf
 
 # Execute
-steamcmd +login lorenzo_tobspr +workshop_build_item "$TMP_VDF" +quit;
+steamcmd +login Raphdf201_ +workshop_build_item "$TMP_VDF" +quit;
 
 # Copy published file id back
 cat Steam\\base.tmp.vdf
