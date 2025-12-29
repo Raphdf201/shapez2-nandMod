@@ -30,7 +30,6 @@
     
     <ItemGroup>
         <Publicize Include="Game.Core.Rendering" />
-        <Publicize Include="Game.Orchestration" />
     </ItemGroup>
 
     <ItemGroup>
@@ -64,10 +63,6 @@
         </Reference>
         <Reference Include="Core.Localization">
             <HintPath>$(SPZ2_PATH)\Core.Localization.dll</HintPath>
-            <Private>False</Private>
-        </Reference>
-        <Reference Include="Game.Core.Map">
-            <HintPath>$(SPZ2_PATH)\Game.Core.Map.dll</HintPath>
             <Private>False</Private>
         </Reference>
         <Reference Include="Game.Core.Map.Simulation">

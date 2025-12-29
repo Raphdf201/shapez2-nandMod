@@ -17,14 +17,13 @@ public class Main : IMod
 {
     private readonly Hook _modSystemHook;
     private readonly BuildingDefinitionId _defId = new("nand");
-    private readonly BuildingDefinitionGroupId _groupId = new("nandgroup");
     private readonly IToolbarEntryInsertLocation _location =
         ToolbarElementLocator.Root().ChildAt(2).ChildAt(6).ChildAt(^1).InsertAfter();
     internal static readonly ModFolderLocator Res = ModDirectoryLocator.CreateLocator<Main>().SubLocator("Resources");
 
     public Main()
     {
-        IBuildingGroupBuilder bldingGroup = BuildingGroup.Create(_groupId)
+        IBuildingGroupBuilder bldingGroup = BuildingGroup.Create(new("nandgroup"))
             .WithTitle("building-variant.nand-gate.title".T())
             .WithDescription("building-variant.nand-gate.description".T())
             .WithIcon(FileTextureLoader.LoadTextureAsSprite(Res.SubPath("icon.png"), out _))
